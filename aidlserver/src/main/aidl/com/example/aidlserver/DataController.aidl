@@ -10,4 +10,7 @@ interface DataController {
    void addDataInOut(inout DataBean data);
    //所有的返回值前都不需要家人和修饰符，无论任何数据类型
     List<DataBean> getData();
+
+    void addDataIn(in DataBean data);
+    void addDataOut(out DataBean data);
 }

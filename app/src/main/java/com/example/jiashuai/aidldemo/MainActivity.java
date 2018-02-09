@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    public void addBook(View view) {
+    public void addBookInOut(View view) {
         //如果与服务端的连接处于未连接状态，则尝试连接
         if (!mBound) {
             attemptToBindService();
@@ -74,10 +74,54 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        DataBean dataBean = new DataBean("张三", 0);
+        DataBean dataBean = new DataBean("张三InOut", 0);
         try {
             Log.e(TAG, "客户端发送" + dataBean.getDataName() + "    " + dataBean.getDataInt());
             dataController.addDataInOut(dataBean);
+            Log.e(TAG, "客户端发送成功" + dataBean.getDataName() + "    " + dataBean.getDataInt());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addBookIn(View view) {
+        //如果与服务端的连接处于未连接状态，则尝试连接
+        if (!mBound) {
+            attemptToBindService();
+            Toast.makeText(this, "当前与服务端处于未连接状态，正在尝试重连，请稍后再试", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (dataController == null) {
+            new NullPointerException("dataController  Null");
+            return;
+        }
+
+        DataBean dataBean = new DataBean("张三In", 0);
+        try {
+            Log.e(TAG, "客户端发送" + dataBean.getDataName() + "    " + dataBean.getDataInt());
+            dataController.addDataIn(dataBean);
+            Log.e(TAG, "客户端发送成功" + dataBean.getDataName() + "    " + dataBean.getDataInt());
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addBookOut(View view) {
+        //如果与服务端的连接处于未连接状态，则尝试连接
+        if (!mBound) {
+            attemptToBindService();
+            Toast.makeText(this, "当前与服务端处于未连接状态，正在尝试重连，请稍后再试", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (dataController == null) {
+            new NullPointerException("dataController  Null");
+            return;
+        }
+
+        DataBean dataBean = new DataBean("张三Out", 0);
+        try {
+            Log.e(TAG, "客户端发送" + dataBean.getDataName() + "    " + dataBean.getDataInt());
+            dataController.addDataOut(dataBean);
             Log.e(TAG, "客户端发送成功" + dataBean.getDataName() + "    " + dataBean.getDataInt());
         } catch (RemoteException e) {
             e.printStackTrace();

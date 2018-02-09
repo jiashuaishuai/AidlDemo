@@ -36,6 +36,26 @@ public class MyServer extends Service {
         public List<DataBean> getData() throws RemoteException {
             return mDataBeans;
         }
+
+        @Override
+        public void addDataIn(DataBean data) throws RemoteException {
+            if (data != null) {
+                Log.e(TAG, "服务端接收" + data.getDataName() + "    " + data.getDataInt());
+                data.setDataInt(1333);//直接修改客户端传过来的值
+                Log.e(TAG, "服务端修改后" + data.getDataName() + "    " + data.getDataInt());
+                mDataBeans.add(data);
+            }
+        }
+
+        @Override
+        public void addDataOut(DataBean data) throws RemoteException {
+            if (data != null) {
+                Log.e(TAG, "服务端接收" + data.getDataName() + "    " + data.getDataInt());
+                data.setDataInt(1444);//直接修改客户端传过来的值
+                Log.e(TAG, "服务端修改后" + data.getDataName() + "    " + data.getDataInt());
+                mDataBeans.add(data);
+            }
+        }
     };
 
     @Override
