@@ -43,10 +43,14 @@ interface DataController {
 **DataBean.java**
 ### **注意：**
 该类包名必须和相应的aidl包名一致，在AndroidStudio移植到客户端的时，客户端包名和服务端包名不一致会导致无法将.java移植到客户端java包下，解决办法就是吧该.java放在aidl目录下如：
+
 ![](img/15181625463176.jpg)
 
+
 这样就可以直接将aidl目录直接拷贝到客户端main目录下
+
 ![](img/15181632352321.jpg)
+
 
 如果出现找不到aidl包下的.java文件时需要在build.gradle文件：android{}中添加一下内容
 
